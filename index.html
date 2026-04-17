@@ -1,1038 +1,1909 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Tiger Papelaria e Presentes em Mauá. Grande variedade de materiais escolares, bazar e presentes com atendimento acolhedor e entrega rápida. Venha nos visitar!">
-    <title>Tiger Papelaria e Presentes | Mauá - SP</title>
-    
-    <!-- Open Graph Meta Tags -->
-    <meta property="og:title" content="Tiger Papelaria e Presentes | Mauá - SP">
-    <meta property="og:description" content="Sua papelaria de confiança em Mauá! Variedade, ótimo atendimento e presentes incríveis.">
-    <meta property="og:type" content="website">
-    
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
-
-    <style>
-        /* ==========================================================================
-           1. VARIÁVEIS E RESET
-           ========================================================================== */
-        :root {
-            --color-primary: #c2198a;
-            --color-primary-dark: #99136c;
-            --color-secondary: #f4b18d;
-            --color-secondary-dark: #df9870;
-            --color-white: #ffffff;
-            --color-bg-light: #fff5f8;
-            --color-text: #333333;
-            --color-text-light: #666666;
-            --color-footer-bg: #1a1a1a;
-            --color-footer-bottom: #111111;
-            
-            --font-heading: 'Quicksand', sans-serif;
-            --font-body: 'Nunito', sans-serif;
-            
-            --transition: all 0.3s ease;
-            --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-            --border-radius: 16px;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: var(--font-body);
-            color: var(--color-text);
-            line-height: 1.6;
-            background-color: var(--color-white);
-            overflow-x: hidden;
-        }
-
-        h1, h2, h3, h4 {
-            font-family: var(--font-heading);
-            color: var(--color-primary);
-            line-height: 1.2;
-        }
-
-        a {
-            text-decoration: none;
-            color: inherit;
-            transition: var(--transition);
-        }
-
-        ul {
-            list-style: none;
-        }
-
-        img {
-            max-width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        .container {
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        .section-padding {
-            padding: 80px 0;
-        }
-
-        /* Animações Fade-in */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Botões */
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            padding: 14px 32px;
-            border-radius: 50px;
-            font-weight: 700;
-            font-family: var(--font-heading);
-            cursor: pointer;
-            transition: var(--transition);
-            text-align: center;
-            border: none;
-            font-size: 1.1rem;
-        }
-
-        .btn-primary {
-            background-color: var(--color-secondary);
-            color: var(--color-text);
-            box-shadow: 0 4px 15px rgba(244, 177, 141, 0.4);
-        }
-
-        .btn-primary:hover {
-            background-color: var(--color-secondary-dark);
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(244, 177, 141, 0.6);
-        }
-
-        .btn-whatsapp {
-            background-color: #25D366;
-            color: white;
-            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
-        }
-
-        .btn-whatsapp:hover {
-            background-color: #20bd5a;
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6);
-        }
-
-        /* ==========================================================================
-           2. NAVEGAÇÃO (HEADER)
-           ========================================================================== */
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background-color: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            padding: 15px 0;
-            transition: var(--transition);
-        }
-
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-family: var(--font-heading);
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--color-primary);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .logo span {
-            color: var(--color-secondary);
-        }
-
-        .nav-links {
-            display: none;
-        }
-
-        .mobile-menu-btn {
-            background: none;
-            border: none;
-            cursor: pointer;
-            display: block;
-        }
-
-        .mobile-menu-btn svg {
-            width: 30px;
-            height: 30px;
-            fill: var(--color-primary);
-        }
-
-        /* ==========================================================================
-           3. HERO SECTION
-           ========================================================================== */
-        .hero {
-            padding: 150px 0 100px;
-            background: linear-gradient(135deg, var(--color-primary) 0%, #ff6b6b 100%);
-            color: var(--color-white);
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::after {
-            content: '';
-            position: absolute;
-            bottom: -50px;
-            left: 0;
-            width: 100%;
-            height: 100px;
-            background: var(--color-white);
-            transform: skewY(-3deg);
-        }
-
-        .hero h1 {
-            color: var(--color-white);
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-        }
-
-        .hero h1 span {
-            color: var(--color-secondary);
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 40px;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-            opacity: 0.9;
-        }
-
-        /* ==========================================================================
-           4. SOBRE NÓS
-           ========================================================================== */
-        .about {
-            background-color: var(--color-white);
-        }
-
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 40px;
-            align-items: center;
-        }
-
-        .about-image {
-            background: linear-gradient(135deg, var(--color-bg-light) 0%, #ffe0d2 100%);
-            border-radius: var(--border-radius);
-            padding: 40px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-            box-shadow: var(--shadow);
-        }
-
-        .about-image svg {
-            width: 150px;
-            height: 150px;
-            fill: var(--color-primary);
-        }
-
-        .section-title {
-            font-size: 2.2rem;
-            margin-bottom: 20px;
-            position: relative;
-            display: inline-block;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 0;
-            width: 60px;
-            height: 4px;
-            background-color: var(--color-secondary);
-            border-radius: 2px;
-        }
-
-        .section-title.center {
-            text-align: center;
-            display: block;
-        }
-
-        .section-title.center::after {
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        .about-text p {
-            margin-bottom: 20px;
-            font-size: 1.1rem;
-            color: var(--color-text-light);
-        }
-
-        /* ==========================================================================
-           5. PRODUTOS / SERVIÇOS
-           ========================================================================== */
-        .services {
-            background-color: var(--color-bg-light);
-            text-align: center;
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 30px;
-            margin-top: 50px;
-        }
-
-        .service-card {
-            background: var(--color-white);
-            padding: 40px 30px;
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-            border-bottom: 4px solid transparent;
-        }
-
-        .service-card:hover {
-            transform: translateY(-10px);
-            border-bottom-color: var(--color-secondary);
-        }
-
-        .service-icon {
-            width: 80px;
-            height: 80px;
-            background-color: #fff0f7;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 20px;
-        }
-
-        .service-icon svg {
-            width: 40px;
-            height: 40px;
-            fill: var(--color-primary);
-        }
-
-        .service-card h3 {
-            font-size: 1.4rem;
-            margin-bottom: 15px;
-        }
-
-        .service-card p {
-            color: var(--color-text-light);
-        }
-
-        /* ==========================================================================
-           6. AVALIAÇÕES DO GOOGLE
-           ========================================================================== */
-        .reviews {
-            background-color: var(--color-white);
-            text-align: center;
-        }
-
-        .rating-summary {
-            margin: 30px 0 50px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .stars {
-            display: flex;
-            gap: 5px;
-        }
-
-        .stars svg {
-            width: 24px;
-            height: 24px;
-            fill: #fbbc04; /* Google Yellow */
-        }
-
-        .rating-score {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--color-primary);
-            font-family: var(--font-heading);
-        }
-
-        .reviews-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 20px;
-        }
-
-        .review-card {
-            background: var(--color-white);
-            padding: 30px;
-            border-radius: var(--border-radius);
-            border: 1px solid #eee;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.03);
-            text-align: left;
-        }
-
-        .review-header {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 15px;
-        }
-
-        .avatar {
-            width: 50px;
-            height: 50px;
-            background-color: var(--color-secondary);
-            color: var(--color-text);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            font-size: 1.2rem;
-            font-family: var(--font-heading);
-        }
-
-        .reviewer-info h4 {
-            color: var(--color-text);
-            margin-bottom: 2px;
-            font-size: 1.1rem;
-        }
-
-        .review-time {
-            font-size: 0.85rem;
-            color: #888;
-        }
-
-        .review-text {
-            font-style: italic;
-            color: var(--color-text-light);
-            font-size: 0.95rem;
-        }
-
-        /* ==========================================================================
-           7. CONTATO E LOCALIZAÇÃO
-           ========================================================================== */
-        .contact {
-            background-color: var(--color-bg-light);
-        }
-
-        .contact-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 40px;
-            margin-top: 50px;
-        }
-
-        .contact-info {
-            background: var(--color-white);
-            padding: 40px;
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow);
-        }
-
-        .info-item {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 25px;
-        }
-
-        .info-icon {
-            flex-shrink: 0;
-            width: 40px;
-            height: 40px;
-            background-color: #fff0f7;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .info-icon svg {
-            width: 20px;
-            height: 20px;
-            fill: var(--color-primary);
-        }
-
-        .info-content h4 {
-            font-size: 1.1rem;
-            margin-bottom: 5px;
-            color: var(--color-text);
-        }
-
-        .info-content p, .info-content ul {
-            color: var(--color-text-light);
-            font-size: 0.95rem;
-        }
-
-        .info-content ul li {
-            position: relative;
-            padding-left: 20px;
-            margin-bottom: 5px;
-        }
-
-        .info-content ul li::before {
-            content: '✓';
-            position: absolute;
-            left: 0;
-            color: var(--color-secondary);
-            font-weight: bold;
-        }
-
-        .map-container {
-            border-radius: var(--border-radius);
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            height: 400px;
-        }
-
-        .map-container iframe {
-            width: 100%;
-            height: 100%;
-            border: 0;
-        }
-
-        /* ==========================================================================
-           8. RODAPÉ
-           ========================================================================== */
-        footer {
-            background-color: var(--color-footer-bg);
-            color: #cccccc;
-            padding-top: 60px;
-        }
-
-        .footer-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 40px;
-            margin-bottom: 40px;
-        }
-
-        .footer-logo {
-            font-family: var(--font-heading);
-            font-size: 1.8rem;
-            color: var(--color-white);
-            margin-bottom: 15px;
-            display: inline-block;
-        }
-
-        .footer-logo span {
-            color: var(--color-secondary);
-        }
-
-        .footer-col h4 {
-            color: var(--color-white);
-            margin-bottom: 20px;
-            font-size: 1.2rem;
-            position: relative;
-            padding-bottom: 10px;
-        }
-
-        .footer-col h4::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            width: 40px;
-            height: 2px;
-            background-color: var(--color-primary);
-        }
-
-        .footer-links li {
-            margin-bottom: 10px;
-        }
-
-        .footer-links a {
-            color: #cccccc;
-        }
-
-        .footer-links a:hover {
-            color: var(--color-secondary);
-            padding-left: 5px;
-        }
-
-        .footer-bottom {
-            background-color: var(--color-footer-bottom);
-            padding: 20px 0;
-            text-align: center;
-            font-size: 12px;
-            color: #888888;
-        }
-
-        .footer-bottom a {
-            color: #888888;
-            text-decoration: underline;
-        }
-
-        .footer-bottom a:hover {
-            color: var(--color-white);
-        }
-
-        /* ==========================================================================
-           9. BOTÃO FLUTUANTE WHATSAPP
-           ========================================================================== */
-        .float-wa {
-            position: fixed;
-            width: 60px;
-            height: 60px;
-            bottom: 30px;
-            right: 30px;
-            background-color: #25d366;
-            color: #FFF;
-            border-radius: 50px;
-            text-align: center;
-            font-size: 30px;
-            box-shadow: 0px 4px 15px rgba(0,0,0,0.2);
-            z-index: 1000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: var(--transition);
-            animation: pulse-wa 2s infinite;
-        }
-
-        .float-wa:hover {
-            background-color: #20bd5a;
-            transform: scale(1.1);
-        }
-
-        .float-wa svg {
-            width: 35px;
-            height: 35px;
-            fill: white;
-        }
-
-        @keyframes pulse-wa {
-            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5); }
-            70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
-        }
-
-        /* ==========================================================================
-           10. MEDIA QUERIES (RESPONSIVO)
-           ========================================================================== */
-        @media (min-width: 768px) {
-            .hero h1 { font-size: 3.5rem; }
-            .about-grid { grid-template-columns: 1fr 1fr; }
-            .services-grid { grid-template-columns: repeat(2, 1fr); }
-            .reviews-grid { grid-template-columns: repeat(3, 1fr); }
-            .contact-grid { grid-template-columns: 1fr 1fr; }
-            .footer-grid { grid-template-columns: 2fr 1fr 1fr; }
-            
-            .nav-links {
-                display: flex;
-                gap: 30px;
-                align-items: center;
-            }
-            .nav-links a {
-                font-weight: 600;
-                color: var(--color-text);
-            }
-            .nav-links a:hover {
-                color: var(--color-primary);
-            }
-            .mobile-menu-btn {
-                display: none;
-            }
-        }
-
-        @media (min-width: 1024px) {
-            .services-grid { grid-template-columns: repeat(4, 1fr); }
-        }
-
-        /* Mobile Menu Aberto */
-        .nav-links.active {
-            display: flex;
-            flex-direction: column;
-            position: absolute;
-            top: 100%;
-            left: 0;
-            width: 100%;
-            background: var(--color-white);
-            padding: 20px;
-            box-shadow: 0 10px 15px rgba(0,0,0,0.1);
-            text-align: center;
-            gap: 20px;
-        }
-
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tiger Papelaria e Presentes | Mauá - SP</title>
+  <meta name="description" content="Tiger Papelaria e Presentes em Mauá - SP. Ampla variedade de itens de papelaria, bazar e presentes. Atendimento especial, preços justos. Venha nos visitar!" />
+  <meta property="og:title" content="Tiger Papelaria e Presentes | Mauá - SP" />
+  <meta property="og:description" content="Sua papelaria de confiança em Mauá. Variedade, preço justo e atendimento que faz a diferença. Há anos servindo a comunidade!" />
+  <meta property="og:type" content="website" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ===========================
+       CSS VARIABLES & RESET
+    =========================== */
+    :root {
+      --pink: #c2198a;
+      --pink-light: #e03aaa;
+      --pink-dark: #9a1470;
+      --peach: #f4b18d;
+      --peach-light: #fbd4b8;
+      --peach-dark: #e8905a;
+      --white: #ffffff;
+      --off-white: #fff9f6;
+      --dark: #1a1a2e;
+      --dark-2: #2d2d3a;
+      --gray: #6b6b80;
+      --gray-light: #f0eef5;
+      --font-display: 'Fredoka', sans-serif;
+      --font-body: 'Nunito', sans-serif;
+      --radius: 16px;
+      --radius-lg: 24px;
+      --shadow: 0 8px 32px rgba(194, 25, 138, 0.12);
+      --shadow-peach: 0 8px 32px rgba(244, 177, 141, 0.3);
+      --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      color: var(--dark);
+      background: var(--off-white);
+      overflow-x: hidden;
+    }
+
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+
+    /* ===========================
+       ANIMATIONS
+    =========================== */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .fade-in-delay-1 { transition-delay: 0.1s; }
+    .fade-in-delay-2 { transition-delay: 0.2s; }
+    .fade-in-delay-3 { transition-delay: 0.3s; }
+    .fade-in-delay-4 { transition-delay: 0.4s; }
+
+    /* ===========================
+       NAVIGATION
+    =========================== */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      box-shadow: 0 2px 20px rgba(194,25,138,0.1);
+      transition: var(--transition);
+    }
+
+    .nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--pink);
+      white-space: nowrap;
+    }
+
+    .nav-logo span {
+      color: var(--peach-dark);
+    }
+
+    .nav-logo-icon {
+      width: 40px; height: 40px;
+      background: linear-gradient(135deg, var(--pink), var(--peach));
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: var(--dark);
+      padding: 6px 14px;
+      border-radius: 50px;
+      transition: var(--transition);
+    }
+
+    .nav-links a:hover {
+      background: var(--pink);
+      color: var(--white);
+    }
+
+    .nav-cta {
+      background: linear-gradient(135deg, var(--pink), var(--pink-light));
+      color: var(--white) !important;
+      padding: 8px 18px !important;
+      border-radius: 50px !important;
+      font-weight: 700 !important;
+      box-shadow: 0 4px 14px rgba(194,25,138,0.3);
+      transition: var(--transition) !important;
+    }
+
+    .nav-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(194,25,138,0.4) !important;
+      background: linear-gradient(135deg, var(--pink-dark), var(--pink)) !important;
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 8px;
+      border: none;
+      background: none;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 2.5px;
+      background: var(--pink);
+      border-radius: 2px;
+      transition: var(--transition);
+    }
+
+    .mobile-menu {
+      display: none;
+      flex-direction: column;
+      gap: 4px;
+      padding: 12px 20px 20px;
+      background: rgba(255,255,255,0.98);
+      border-top: 1px solid rgba(194,25,138,0.1);
+    }
+
+    .mobile-menu.open { display: flex; }
+
+    .mobile-menu a {
+      font-weight: 600;
+      font-size: 1rem;
+      color: var(--dark);
+      padding: 10px 14px;
+      border-radius: 10px;
+      transition: var(--transition);
+    }
+
+    .mobile-menu a:hover {
+      background: var(--gray-light);
+      color: var(--pink);
+    }
+
+    /* ===========================
+       HERO
+    =========================== */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      padding: 100px 20px 60px;
+      background: linear-gradient(135deg, #fff0f8 0%, #fff9f4 50%, #fff5fd 100%);
+    }
+
+    .hero-blobs {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(70px);
+      opacity: 0.35;
+    }
+
+    .blob-1 {
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, var(--pink-light), transparent 70%);
+      top: -100px; right: -100px;
+    }
+
+    .blob-2 {
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, var(--peach), transparent 70%);
+      bottom: -80px; left: -80px;
+    }
+
+    .blob-3 {
+      width: 300px; height: 300px;
+      background: radial-gradient(circle, #f7c8e0, transparent 70%);
+      top: 40%; left: 30%;
+    }
+
+    .hero-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: white;
+      border: 2px solid var(--peach);
+      color: var(--peach-dark);
+      font-weight: 700;
+      font-size: 0.85rem;
+      padding: 6px 16px;
+      border-radius: 50px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 12px rgba(244,177,141,0.2);
+    }
+
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.4rem, 5vw, 3.8rem);
+      font-weight: 700;
+      line-height: 1.15;
+      color: var(--dark);
+      margin-bottom: 20px;
+    }
+
+    .hero-title .highlight {
+      color: var(--pink);
+      position: relative;
+      display: inline-block;
+    }
+
+    .hero-title .highlight::after {
+      content: '';
+      position: absolute;
+      bottom: 4px; left: 0; right: 0;
+      height: 6px;
+      background: var(--peach);
+      border-radius: 3px;
+      z-index: -1;
+      opacity: 0.6;
+    }
+
+    .hero-subtitle {
+      font-size: 1.1rem;
+      color: var(--gray);
+      line-height: 1.7;
+      margin-bottom: 36px;
+      max-width: 480px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: linear-gradient(135deg, var(--pink), var(--pink-light));
+      color: white;
+      font-weight: 700;
+      font-size: 1rem;
+      padding: 14px 28px;
+      border-radius: 50px;
+      box-shadow: 0 6px 24px rgba(194,25,138,0.35);
+      transition: var(--transition);
+      border: none;
+      cursor: pointer;
+      font-family: var(--font-body);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 32px rgba(194,25,138,0.45);
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: white;
+      color: var(--pink);
+      font-weight: 700;
+      font-size: 1rem;
+      padding: 14px 28px;
+      border-radius: 50px;
+      border: 2px solid var(--pink);
+      transition: var(--transition);
+      cursor: pointer;
+      font-family: var(--font-body);
+    }
+
+    .btn-secondary:hover {
+      background: var(--pink);
+      color: white;
+      transform: translateY(-3px);
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 28px;
+      margin-top: 40px;
+      flex-wrap: wrap;
+    }
+
+    .hero-stat {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .hero-stat strong {
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      color: var(--pink);
+      line-height: 1;
+    }
+
+    .hero-stat span {
+      font-size: 0.8rem;
+      color: var(--gray);
+      font-weight: 600;
+      margin-top: 4px;
+    }
+
+    .hero-visual {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    .hero-card {
+      background: white;
+      border-radius: var(--radius-lg);
+      padding: 40px;
+      box-shadow: var(--shadow), 0 0 0 1px rgba(194,25,138,0.06);
+      width: 100%;
+      max-width: 420px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-card-emoji-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+
+    .emoji-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      background: var(--gray-light);
+      border-radius: 12px;
+      padding: 14px 8px;
+      transition: var(--transition);
+    }
+
+    .emoji-item:hover {
+      background: var(--peach-light);
+      transform: translateY(-3px);
+    }
+
+    .emoji-item .emoji { font-size: 1.8rem; }
+
+    .emoji-item span {
+      font-size: 0.68rem;
+      font-weight: 700;
+      color: var(--gray);
+      text-align: center;
+      line-height: 1.2;
+    }
+
+    .hero-card-footer {
+      background: linear-gradient(135deg, var(--pink), var(--pink-light));
+      border-radius: 12px;
+      padding: 16px;
+      color: white;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .hero-card-footer .icon-wrap {
+      width: 40px; height: 40px;
+      background: rgba(255,255,255,0.2);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .hero-card-footer p {
+      font-size: 0.88rem;
+      font-weight: 700;
+      line-height: 1.4;
+    }
+
+    .hero-floating-badge {
+      position: absolute;
+      top: -20px;
+      right: -20px;
+      background: white;
+      border: 3px solid var(--peach);
+      border-radius: 50%;
+      width: 80px;
+      height: 80px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 16px rgba(244,177,141,0.4);
+      z-index: 2;
+    }
+
+    .hero-floating-badge strong {
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      color: var(--pink);
+      line-height: 1;
+    }
+
+    .hero-floating-badge span {
+      font-size: 0.6rem;
+      font-weight: 700;
+      color: var(--gray);
+      text-align: center;
+      line-height: 1.3;
+    }
+
+    /* ===========================
+       SECTION SHARED
+    =========================== */
+    section { padding: 90px 20px; }
+
+    .section-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.8rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--pink);
+      margin-bottom: 12px;
+    }
+
+    .section-label::before {
+      content: '';
+      width: 20px;
+      height: 3px;
+      background: var(--peach);
+      border-radius: 2px;
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.9rem, 4vw, 2.8rem);
+      font-weight: 700;
+      line-height: 1.2;
+      color: var(--dark);
+      margin-bottom: 16px;
+    }
+
+    .section-title em {
+      font-style: normal;
+      color: var(--pink);
+    }
+
+    .section-subtitle {
+      font-size: 1.05rem;
+      color: var(--gray);
+      line-height: 1.7;
+      max-width: 580px;
+    }
+
+    /* ===========================
+       SOBRE
+    =========================== */
+    #sobre {
+      background: white;
+    }
+
+    .sobre-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 70px;
+      align-items: center;
+    }
+
+    .sobre-visual {
+      position: relative;
+    }
+
+    .sobre-main-card {
+      background: linear-gradient(135deg, var(--pink) 0%, var(--pink-light) 50%, var(--peach) 100%);
+      border-radius: var(--radius-lg);
+      padding: 50px 40px;
+      color: white;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .sobre-main-card::before {
+      content: '';
+      position: absolute;
+      top: -40px; right: -40px;
+      width: 200px; height: 200px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 50%;
+    }
+
+    .sobre-main-card::after {
+      content: '';
+      position: absolute;
+      bottom: -30px; left: -30px;
+      width: 140px; height: 140px;
+      background: rgba(255,255,255,0.06);
+      border-radius: 50%;
+    }
+
+    .sobre-main-card .big-emoji {
+      font-size: 5rem;
+      display: block;
+      margin-bottom: 16px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .sobre-main-card h3 {
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      margin-bottom: 8px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .sobre-main-card p {
+      font-size: 0.95rem;
+      opacity: 0.9;
+      position: relative;
+      z-index: 1;
+      line-height: 1.6;
+    }
+
+    .sobre-mini-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-top: 14px;
+    }
+
+    .mini-card {
+      background: var(--off-white);
+      border: 2px solid transparent;
+      border-radius: var(--radius);
+      padding: 18px 16px;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      transition: var(--transition);
+    }
+
+    .mini-card:hover {
+      border-color: var(--peach);
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-peach);
+    }
+
+    .mini-card-icon {
+      width: 38px; height: 38px;
+      background: linear-gradient(135deg, var(--pink), var(--peach));
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .mini-card h4 {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: 4px;
+    }
+
+    .mini-card p {
+      font-size: 0.78rem;
+      color: var(--gray);
+      line-height: 1.4;
+    }
+
+    .sobre-content { }
+
+    .sobre-text {
+      font-size: 1.05rem;
+      color: var(--gray);
+      line-height: 1.8;
+      margin-bottom: 16px;
+    }
+
+    .horario-box {
+      background: var(--off-white);
+      border-radius: var(--radius);
+      padding: 24px;
+      margin-top: 28px;
+      border-left: 4px solid var(--pink);
+    }
+
+    .horario-box h4 {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      color: var(--pink);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .horario-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(194,25,138,0.08);
+      font-size: 0.9rem;
+    }
+
+    .horario-item:last-child { border-bottom: none; }
+
+    .horario-item .dia {
+      font-weight: 600;
+      color: var(--dark);
+    }
+
+    .horario-item .hora {
+      font-weight: 700;
+      color: var(--pink);
+      background: rgba(194,25,138,0.08);
+      padding: 3px 10px;
+      border-radius: 50px;
+    }
+
+    /* ===========================
+       PRODUTOS / SERVIÇOS
+    =========================== */
+    #produtos {
+      background: var(--off-white);
+    }
+
+    .produtos-header {
+      text-align: center;
+      margin-bottom: 56px;
+    }
+
+    .produtos-header .section-label { justify-content: center; }
+
+    .produtos-header .section-subtitle { margin: 0 auto; }
+
+    .produtos-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .produto-card {
+      background: white;
+      border-radius: var(--radius-lg);
+      padding: 32px 28px;
+      border: 2px solid transparent;
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .produto-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--pink), var(--peach));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: var(--transition);
+    }
+
+    .produto-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .produto-card:hover {
+      border-color: rgba(194,25,138,0.1);
+      transform: translateY(-6px);
+      box-shadow: var(--shadow);
+    }
+
+    .produto-emoji {
+      font-size: 3rem;
+      margin-bottom: 16px;
+      display: block;
+    }
+
+    .produto-card h3 {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      color: var(--dark);
+      margin-bottom: 10px;
+    }
+
+    .produto-card p {
+      font-size: 0.9rem;
+      color: var(--gray);
+      line-height: 1.6;
+    }
+
+    .produto-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 16px;
+    }
+
+    .tag {
+      font-size: 0.72rem;
+      font-weight: 700;
+      background: rgba(194,25,138,0.08);
+      color: var(--pink);
+      padding: 4px 10px;
+      border-radius: 50px;
+    }
+
+    .tag-peach {
+      background: rgba(244,177,141,0.2);
+      color: var(--peach-dark);
+    }
+
+    /* ===========================
+       DIFERENCIAIS STRIP
+    =========================== */
+    .diferenciais-strip {
+      background: linear-gradient(135deg, var(--pink), var(--pink-light) 50%, var(--peach-dark));
+      padding: 48px 20px;
+    }
+
+    .diferenciais-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 32px;
+    }
+
+    .diferencial-item {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      color: white;
+    }
+
+    .diferencial-item .icon-circle {
+      width: 52px; height: 52px;
+      background: rgba(255,255,255,0.18);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .diferencial-item h4 {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      margin-bottom: 4px;
+    }
+
+    .diferencial-item p {
+      font-size: 0.8rem;
+      opacity: 0.85;
+      line-height: 1.4;
+    }
+
+    /* ===========================
+       AVALIAÇÕES
+    =========================== */
+    #avaliacoes {
+      background: white;
+    }
+
+    .avaliacoes-header {
+      text-align: center;
+      margin-bottom: 56px;
+    }
+
+    .avaliacoes-header .section-label { justify-content: center; }
+
+    .google-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 16px;
+      background: var(--off-white);
+      border: 2px solid var(--peach);
+      border-radius: var(--radius);
+      padding: 16px 28px;
+      margin: 0 auto 40px;
+    }
+
+    .google-badge-left {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .google-badge .score {
+      font-family: var(--font-display);
+      font-size: 2.5rem;
+      color: var(--pink);
+      line-height: 1;
+      font-weight: 700;
+    }
+
+    .stars {
+      display: flex;
+      gap: 3px;
+    }
+
+    .stars svg { color: #f5a623; }
+
+    .google-badge .reviews {
+      font-size: 0.85rem;
+      color: var(--gray);
+      font-weight: 600;
+    }
+
+    .google-badge-right {
+      border-left: 1px solid rgba(0,0,0,0.1);
+      padding-left: 16px;
+    }
+
+    .google-badge-right p {
+      font-size: 0.9rem;
+      color: var(--gray);
+      line-height: 1.5;
+    }
+
+    .google-badge-right strong { color: var(--dark); }
+
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .review-card {
+      background: var(--off-white);
+      border-radius: var(--radius);
+      padding: 28px;
+      border: 2px solid transparent;
+      transition: var(--transition);
+      position: relative;
+    }
+
+    .review-card:hover {
+      border-color: var(--peach);
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-peach);
+    }
+
+    .review-card .quote-mark {
+      font-family: var(--font-display);
+      font-size: 4rem;
+      color: var(--peach);
+      line-height: 0.8;
+      margin-bottom: 8px;
+      opacity: 0.6;
+    }
+
+    .review-text {
+      font-size: 0.92rem;
+      color: var(--gray);
+      line-height: 1.7;
+      margin-bottom: 20px;
+      font-style: italic;
+    }
+
+    .review-footer {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .review-avatar {
+      width: 42px; height: 42px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--pink), var(--peach));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      color: white;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .review-footer .info h4 {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--dark);
+    }
+
+    .review-footer .info span {
+      font-size: 0.78rem;
+      color: var(--gray);
+    }
+
+    /* ===========================
+       CONTATO
+    =========================== */
+    #contato {
+      background: var(--off-white);
+    }
+
+    .contato-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: start;
+    }
+
+    .contato-info-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-top: 28px;
+    }
+
+    .info-card {
+      background: white;
+      border-radius: var(--radius);
+      padding: 20px 22px;
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      border: 2px solid transparent;
+      transition: var(--transition);
+    }
+
+    .info-card:hover {
+      border-color: var(--peach);
+      transform: translateX(6px);
+    }
+
+    .info-card-icon {
+      width: 44px; height: 44px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--pink), var(--peach));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .info-card h4 {
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--pink);
+      margin-bottom: 6px;
+    }
+
+    .info-card p {
+      font-size: 0.92rem;
+      color: var(--dark);
+      font-weight: 600;
+      line-height: 1.5;
+    }
+
+    .info-card a {
+      color: var(--dark);
+      font-weight: 600;
+      font-size: 0.92rem;
+    }
+
+    .info-card a:hover { color: var(--pink); }
+
+    .pagamentos-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 6px;
+    }
+
+    .pagamento-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: var(--gray-light);
+      color: var(--dark);
+      font-size: 0.78rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 50px;
+    }
+
+    .btn-whatsapp-big {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      background: #25D366;
+      color: white;
+      font-weight: 800;
+      font-size: 1.05rem;
+      padding: 16px 28px;
+      border-radius: 50px;
+      margin-top: 24px;
+      box-shadow: 0 6px 24px rgba(37,211,102,0.35);
+      transition: var(--transition);
+      font-family: var(--font-body);
+    }
+
+    .btn-whatsapp-big:hover {
+      background: #1ebe5b;
+      transform: translateY(-3px);
+      box-shadow: 0 10px 32px rgba(37,211,102,0.45);
+    }
+
+    .map-container {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      border: 3px solid white;
+      height: 400px;
+    }
+
+    .map-container iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+    }
+
+    /* ===========================
+       FOOTER
+    =========================== */
+    footer {
+      background: var(--dark);
+      color: rgba(255,255,255,0.7);
+    }
+
+    .footer-main {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 60px 20px 40px;
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr;
+      gap: 48px;
+    }
+
+    .footer-brand .nav-logo {
+      color: white;
+      font-size: 1.4rem;
+      margin-bottom: 16px;
+    }
+
+    .footer-brand .nav-logo span { color: var(--peach); }
+
+    .footer-brand p {
+      font-size: 0.9rem;
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+
+    .footer-social {
+      display: flex;
+      gap: 10px;
+    }
+
+    .footer-social a {
+      width: 38px; height: 38px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+    }
+
+    .footer-social a:hover {
+      background: var(--pink);
+    }
+
+    .footer-col h4 {
+      font-family: var(--font-display);
+      color: white;
+      font-size: 1.05rem;
+      margin-bottom: 18px;
+    }
+
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .footer-links a {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.6);
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .footer-links a::before {
+      content: '›';
+      color: var(--peach);
+      font-size: 1.1rem;
+      line-height: 1;
+    }
+
+    .footer-links a:hover {
+      color: var(--peach);
+      transform: translateX(4px);
+    }
+
+    .footer-contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 12px;
+      font-size: 0.88rem;
+    }
+
+    .footer-contact-item svg {
+      flex-shrink: 0;
+      color: var(--peach);
+      margin-top: 2px;
+    }
+
+    .footer-divider {
+      border: none;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      margin: 0 20px;
+    }
+
+    .footer-credits {
+      background: #111120;
+      padding: 14px 20px;
+      text-align: center;
+      font-size: 12px;
+      color: rgba(255,255,255,0.4);
+    }
+
+    .footer-credits a {
+      color: var(--peach);
+      font-weight: 700;
+      transition: var(--transition);
+    }
+
+    .footer-credits a:hover { color: var(--pink); }
+
+    /* ===========================
+       FLOATING WHATSAPP
+    =========================== */
+    .float-whatsapp {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      width: 60px;
+      height: 60px;
+      background: #25D366;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 20px rgba(37,211,102,0.5);
+      z-index: 999;
+      transition: var(--transition);
+      animation: pulse-whatsapp 2.5s infinite;
+    }
+
+    .float-whatsapp:hover {
+      transform: scale(1.12);
+      box-shadow: 0 8px 32px rgba(37,211,102,0.6);
+    }
+
+    @keyframes pulse-whatsapp {
+      0% { box-shadow: 0 4px 20px rgba(37,211,102,0.5); }
+      50% { box-shadow: 0 4px 28px rgba(37,211,102,0.8), 0 0 0 8px rgba(37,211,102,0.1); }
+      100% { box-shadow: 0 4px 20px rgba(37,211,102,0.5); }
+    }
+
+    /* ===========================
+       RESPONSIVE — TABLET
+    =========================== */
+    @media (max-width: 900px) {
+      .hero-inner {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 48px;
+      }
+      .hero-subtitle { margin: 0 auto 36px; }
+      .hero-buttons { justify-content: center; }
+      .hero-stats { justify-content: center; }
+      .hero-visual { order: -1; }
+      .hero-floating-badge { top: -14px; right: 10px; }
+
+      .sobre-grid { grid-template-columns: 1fr; gap: 40px; }
+      .produtos-grid { grid-template-columns: repeat(2, 1fr); }
+      .diferenciais-inner { grid-template-columns: repeat(2, 1fr); }
+      .reviews-grid { grid-template-columns: 1fr; }
+      .contato-grid { grid-template-columns: 1fr; }
+      .footer-main { grid-template-columns: 1fr 1fr; }
+    }
+
+    /* ===========================
+       RESPONSIVE — MOBILE
+    =========================== */
+    @media (max-width: 600px) {
+      nav .nav-links { display: none; }
+      .hamburger { display: flex; }
+
+      #hero { padding: 90px 20px 50px; }
+
+      .hero-card-emoji-grid { grid-template-columns: repeat(3, 1fr); }
+
+      .produtos-grid { grid-template-columns: 1fr; }
+
+      .diferenciais-inner { grid-template-columns: 1fr 1fr; gap: 20px; }
+
+      .sobre-mini-cards { grid-template-columns: 1fr; }
+
+      .footer-main {
+        grid-template-columns: 1fr;
+        gap: 32px;
+        padding: 40px 20px 28px;
+      }
+    }
+  </style>
 </head>
 <body>
 
-    <!-- CABEÇALHO / NAVEGAÇÃO -->
-    <header id="header">
-        <div class="container nav-container">
-            <a href="#" class="logo">
-                Tiger <span>Papelaria</span>
-            </a>
-            
-            <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Abrir menu">
-                <svg viewBox="0 0 24 24">
-                    <path d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" />
-                </svg>
-            </button>
-
-            <ul class="nav-links" id="nav-links">
-                <li><a href="#inicio">Início</a></li>
-                <li><a href="#sobre">Quem Somos</a></li>
-                <li><a href="#servicos">Produtos</a></li>
-                <li><a href="#avaliacoes">Avaliações</a></li>
-                <li><a href="#contato">Contato</a></li>
-            </ul>
-        </div>
-    </header>
-
-    <!-- HERO SECTION -->
-    <section id="inicio" class="hero fade-in">
-        <div class="container">
-            <h1>Tudo o que você precisa em Papelaria <span>com o carinho que você merece!</span></h1>
-            <p>Há décadas fazendo parte da sua história no Parque São Vicente em Mauá. Venha conferir nossa enorme variedade ou faça seu pedido de forma rápida e prática pelo WhatsApp.</p>
-            <a href="https://wa.me/5511975182321" target="_blank" class="btn btn-primary">
-                Falar com Atendente
-                <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
-                    <path d="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z" />
-                </svg>
-            </a>
-        </div>
-    </section>
-
-    <!-- SOBRE A EMPRESA -->
-    <section id="sobre" class="section-padding about fade-in">
-        <div class="container about-grid">
-            <div class="about-image">
-                <!-- Ilustração abstrata/ícone representando loja e comunidade -->
-                <svg viewBox="0 0 24 24">
-                    <path d="M12,18H6V14H12M21,14V12L20,7H4L3,12V14H4V20H14V14H18V20H20V14M20,4H4V6H20V4Z" />
-                </svg>
-            </div>
-            <div class="about-text">
-                <h2 class="section-title">Nossa Essência</h2>
-                <p>A <strong>Tiger Papelaria e Presentes</strong> é muito mais do que uma loja; somos um ponto de encontro de soluções para o seu dia a dia. Localizados no coração do Parque São Vicente, em Mauá, nos orgulhamos de atender gerações de clientes.</p>
-                <p>Não mudamos nossa essência familiar e acolhedora, mesmo com tantos anos de estrada. Aqui, você encontra um ambiente onde o atendimento próximo e os preços justos caminham lado a lado.</p>
-                <p>Seja para o trabalho escolar dos pequenos, itens essenciais de bazar ou aquele presente de última hora, nossa equipe está sempre pronta para ajudar com um sorriso no rosto.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- SERVIÇOS E PRODUTOS -->
-    <section id="servicos" class="section-padding services fade-in">
-        <div class="container">
-            <h2 class="section-title center">O Que Oferecemos</h2>
-            <p>Soluções completas em papelaria, bazar e presentes para você.</p>
-            
-            <div class="services-grid">
-                <!-- Card 1 -->
-                <div class="service-card">
-                    <div class="service-icon">
-                        <svg viewBox="0 0 24 24"><path d="M20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18,2.9 17.35,2.9 16.96,3.29L15.12,5.12L18.87,8.87M3,17.25V21H6.75L17.81,9.93L14.06,6.18L3,17.25Z"/></svg>
-                    </div>
-                    <h3>Material Escolar e Escritório</h3>
-                    <p>Ampla variedade de cadernos, canetas e itens de organização para seu estudo ou trabalho renderem mais.</p>
-                </div>
-                
-                <!-- Card 2 -->
-                <div class="service-card">
-                    <div class="service-icon">
-                        <svg viewBox="0 0 24 24"><path d="M22,12V20A2,2 0 0,1 20,22H4A2,2 0 0,1 2,20V12A1,1 0 0,1 1,11V8A2,2 0 0,1 3,6H6.17C6.06,5.69 6,5.35 6,5A3,3 0 0,1 9,2C10,2 10.88,2.5 11.43,3.24V3.23L12,4L12.57,3.23V3.24C13.12,2.5 14,2 15,2A3,3 0 0,1 18,5C18,5.35 17.94,5.69 17.83,6H21A2,2 0 0,1 23,8V11A1,1 0 0,1 22,12M4,20H11V12H4V20M20,20V12H13V20H20M9,4A1,1 0 0,0 8,5A1,1 0 0,0 9,6A1,1 0 0,0 10,5A1,1 0 0,0 9,4M15,4A1,1 0 0,0 14,5A1,1 0 0,0 15,6A1,1 0 0,0 16,5A1,1 0 0,0 15,4M3,8V10H11V8H3M13,8V10H21V8H13Z"/></svg>
-                    </div>
-                    <h3>Presentes e Bazar</h3>
-                    <p>Opções criativas para surpreender quem você ama. Além de itens essenciais de bazar que quebram um galhão.</p>
-                </div>
-
-                <!-- Card 3 -->
-                <div class="service-card">
-                    <div class="service-icon">
-                        <svg viewBox="0 0 24 24"><path d="M12,15.5A3.5,3.5 0 0,1 8.5,12A3.5,3.5 0 0,1 12,8.5A3.5,3.5 0 0,1 15.5,12A3.5,3.5 0 0,1 12,15.5M19.43,12.97C19.47,12.65 19.5,12.33 19.5,12C19.5,11.67 19.47,11.34 19.43,11L21.54,9.37C21.73,9.22 21.78,8.95 21.66,8.73L19.66,5.27C19.54,5.05 19.27,4.96 19.05,5.05L16.56,6.05C16.04,5.66 15.5,5.32 14.87,5.07L14.5,2.42C14.46,2.18 14.25,2 14,2H10C9.75,2 9.54,2.18 9.5,2.42L9.13,5.07C8.5,5.32 7.96,5.66 7.44,6.05L4.95,5.05C4.73,4.96 4.46,5.05 4.34,5.27L2.34,8.73C2.21,8.95 2.27,9.22 2.46,9.37L4.57,11C4.53,11.34 4.5,11.67 4.5,12C4.5,12.33 4.53,12.65 4.57,12.97L2.46,14.63C2.27,14.78 2.21,15.05 2.34,15.27L4.34,18.73C4.46,18.95 4.73,19.03 4.95,18.95L7.44,17.94C7.96,18.34 8.5,18.68 9.13,18.93L9.5,21.58C9.54,21.82 9.75,22 10,22H14C14.25,22 14.46,21.82 14.5,21.58L14.87,18.93C15.5,18.68 16.04,18.34 16.56,17.94L19.05,18.95C19.27,19.03 19.54,18.95 19.66,18.73L21.66,15.27C21.78,15.05 21.73,14.78 21.54,14.63L19.43,12.97Z"/></svg>
-                    </div>
-                    <h3>Variedade Única</h3>
-                    <p>O que você procura, encontra aqui. Desde a bateria do relógio até botões de camisa. Uma verdadeira loja de conveniências.</p>
-                </div>
-
-                <!-- Card 4 -->
-                <div class="service-card">
-                    <div class="service-icon">
-                        <svg viewBox="0 0 24 24"><path d="M20,8H3V6H20M20,18H3V16H20M20,13H3V11H20V13Z"/></svg>
-                    </div>
-                    <h3>Entrega Rápida</h3>
-                    <p>Comodidade de comprar sem sair de casa. Consulte nossa área de cobertura e receba seus produtos com segurança.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- AVALIAÇÕES DO GOOGLE -->
-    <section id="avaliacoes" class="section-padding reviews fade-in">
-        <div class="container">
-            <h2 class="section-title center">O que Nossos Clientes Dizem</h2>
-            
-            <div class="rating-summary">
-                <div class="rating-score">4,5</div>
-                <div class="stars">
-                    <!-- 5 estrelas completas para ilustrar (4.5 visualmente) -->
-                    <svg viewBox="0 0 24 24"><path d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"/></svg>
-                    <svg viewBox="0 0 24 24"><path d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"/></svg>
-                    <svg viewBox="0 0 24 24"><path d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"/></svg>
-                    <svg viewBox="0 0 24 24"><path d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"/></svg>
-                    <svg viewBox="0 0 24 24"><path d="M12,15.4V6.1L13.71,10.13L18.09,10.5L14.77,13.39L15.76,17.67L12,15.4M22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27L18.18,21L16.54,13.97L22,9.24Z"/></svg>
-                </div>
-                <p>Baseado em <strong>142 avaliações</strong> no Google</p>
-            </div>
-
-            <div class="reviews-grid">
-                <!-- Review 1 -->
-                <div class="review-card">
-                    <div class="review-header">
-                        <div class="avatar">G</div>
-                        <div class="reviewer-info">
-                            <h4>Gisele Costa</h4>
-                            <div class="stars">
-                                <svg width="14" height="14" viewBox="0 0 24 24"><path d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"/></svg>
-                                <svg width="14" height="14" viewBox="0 0 24 24"><path d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"/></svg>
-                                <svg width="14" height="14" viewBox="0 0 24 24"><path d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"/></svg>
-                                <svg width="14" height="14" viewBox="0 0 24 24"><path d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"/></svg>
-                                <svg width="14" height="14" viewBox="0 0 24 24"><path d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"/></svg>
-                            </div>
-                            <span class="review-time">3 meses atrás</span>
-                        </div>
-                    </div>
-                    <p class="review-text">"Ótima variedade e atendimento de toda equipe. Indico muito!"</p>
-                </div>
-
-                <!-- Review 2 -->
-                <div class="review-card">
-                    <div class="review-header">
-                        <div class="avatar" style="background-color: var(--color-primary); color: white;">L</div>
-                        <div class="reviewer-info">
-                            <h4>Luis Duarte</h4>
-                            <div class="stars">
-                                <svg width="14" height="14" viewBox="0 0 24 24"><path d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"/></svg>
-                                <svg width="14" height="14" viewBox="0 0 24 24"><path d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"/></svg>
-                                <svg width="14" height="14" viewBox="0 0 24 24"><path d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"/></svg>
-                                <svg width="14" height="14" viewBox="0 0 24 24"><path d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"/></svg>
-                                <svg width="14" height="14" viewBox="0 0 24 24"><path d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"/></svg>
-                            </div>
-                            <span class="review-time">4 anos atrás</span>
-                        </div>
-                    </div>
-                    <p class="review-text">"Local pequeno porém conta com uma boa variedade de itens de papelaria e bazar. Tudo o que procurei neste local até hoje encontrei, desde bateria à botões de camisa. O atendimento é bom e os preços são justos."</p>
-                </div>
-
-                <!-- Review 3 -->
-                <div class="review-card">
-                    <div class="review-header">
-                        <div class="avatar" style="background-color: #ff6b6b; color: white;">L</div>
-                        <div class="reviewer-info">
-                            <h4>Larissa de João</h4>
-                            <div class="stars">
-                                <svg width="14" height="14" viewBox="0 0 24 24"><path d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"/></svg>
-                                <svg width="14" height="14" viewBox="0 0 24 24"><path d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"/></svg>
-                                <svg width="14" height="14" viewBox="0 0 24 24"><path d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"/></svg>
-                                <svg width="14" height="14" viewBox="0 0 24 24"><path d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"/></svg>
-                                <svg width="14" height="14" viewBox="0 0 24 24"><path d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"/></svg>
-                            </div>
-                            <span class="review-time">um ano atrás</span>
-                        </div>
-                    </div>
-                    <p class="review-text">"Frequentava com mais frequência a uns 20 anos quando fazia muito trabalho escolar, hoje vou com a minha filha 🥹🤏 não mudaram a essência mesmo com tantos anos. Parabéns!!"</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CONTATO E LOCALIZAÇÃO -->
-    <section id="contato" class="section-padding contact fade-in">
-        <div class="container">
-            <h2 class="section-title center">Visite a Tiger Papelaria</h2>
-            <p style="text-align: center; margin-bottom: 30px;">Venha tomar um café com a gente ou faça seu pedido sem sair de casa.</p>
-            
-            <div class="contact-grid">
-                <!-- Informações -->
-                <div class="contact-info">
-                    <div class="info-item">
-                        <div class="info-icon">
-                            <svg viewBox="0 0 24 24"><path d="M12,11.5A2.5,2.5 0 0,1 9.5,9A2.5,2.5 0 0,1 12,6.5A2.5,2.5 0 0,1 14.5,9A2.5,2.5 0 0,1 12,11.5M12,2A7,7 0 0,0 5,9C5,14.25 12,22 12,22C12,22 19,14.25 19,9A7,7 0 0,0 12,2Z"/></svg>
-                        </div>
-                        <div class="info-content">
-                            <h4>Nosso Endereço</h4>
-                            <p>R. Pres. Artur da Costa e Silva, 414<br>Parque Sao Vicente, Mauá - SP<br>CEP: 09371-490</p>
-                        </div>
-                    </div>
-
-                    <div class="info-item">
-                        <div class="info-icon">
-                            <svg viewBox="0 0 24 24"><path d="M12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22C6.47,22 2,17.5 2,12A10,10 0 0,1 12,2M12.5,7V12.25L17,14.92L16.25,16.15L11,13V7H12.5Z"/></svg>
-                        </div>
-                        <div class="info-content">
-                            <h4>Horário de Funcionamento</h4>
-                            <p>
-                                <strong>Segunda à Sexta:</strong> 09:00 – 19:00<br>
-                                <strong>Sábado:</strong> 09:00 – 18:30<br>
-                                <strong>Domingo:</strong> 09:00 – 13:00
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="info-item">
-                        <div class="info-icon">
-                            <svg viewBox="0 0 24 24"><path d="M20,8H4V6H20M20,18H4V12H20M20,4H4C2.89,4 2,4.89 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V6C22,4.89 21.1,4 20,4Z"/></svg>
-                        </div>
-                        <div class="info-content">
-                            <h4>Formas de Pagamento</h4>
-                            <ul>
-                                <li>Cartões de Crédito e Débito</li>
-                                <li>Aproximação (NFC)</li>
-                                <li>Dinheiro</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div style="margin-top: 30px; text-align: center;">
-                        <a href="https://wa.me/5511975182321" target="_blank" class="btn btn-whatsapp">
-                            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.03 14.69 2 12.04 2M12.05 3.67C14.25 3.67 16.31 4.53 17.87 6.09C19.42 7.65 20.28 9.72 20.28 11.92C20.28 16.46 16.58 20.15 12.04 20.15C10.56 20.15 9.11 19.76 7.85 19L7.55 18.83L4.43 19.65L5.26 16.61L5.06 16.29C4.24 15 3.8 13.47 3.8 11.91C3.81 7.37 7.5 3.67 12.05 3.67M8.53 7.33C8.37 7.33 8.1 7.39 7.87 7.64C7.65 7.89 7 8.5 7 9.71C7 10.93 7.89 12.1 8 12.27C8.14 12.44 9.76 14.94 12.25 16C12.84 16.27 13.3 16.42 13.66 16.53C14.25 16.72 14.79 16.69 15.22 16.63C15.7 16.56 16.68 16.03 16.89 15.45C17.1 14.87 17.1 14.38 17.04 14.27C16.97 14.17 16.81 14.11 16.56 14C16.31 13.86 15.09 13.26 14.87 13.18C14.64 13.1 14.5 13.06 14.31 13.3C14.15 13.55 13.67 14.11 13.53 14.27C13.38 14.44 13.24 14.46 13 14.34C12.74 14.21 11.94 13.95 11 13.11C10.26 12.45 9.77 11.64 9.62 11.39C9.5 11.15 9.61 11 9.73 10.89C9.84 10.78 10 10.6 10.1 10.45C10.23 10.31 10.27 10.2 10.35 10.04C10.43 9.87 10.39 9.73 10.33 9.61C10.27 9.5 9.77 8.26 9.56 7.77C9.36 7.29 9.16 7.35 9 7.34C8.86 7.34 8.7 7.33 8.53 7.33Z"/></svg>
-                            Chamar no WhatsApp
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Mapa -->
-                <div class="map-container">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3654.1612089457223!2d-46.46738918440449!3d-23.668417970876483!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce69a689f21fbd%3A0xc6829bf4d28afc29!2sR.%20Pres.%20Artur%20da%20Costa%20e%20Silva%2C%20414%20-%20Parque%20Sao%20Vicente%2C%20Mau%C3%A1%20-%20SP%2C%2009371-490!5e0!3m2!1spt-BR!2sbr!4v1684535312345!5m2!1spt-BR!2sbr" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- RODAPÉ -->
-    <footer>
-        <div class="container footer-grid">
-            <div class="footer-col">
-                <a href="#" class="footer-logo">Tiger <span>Papelaria</span></a>
-                <p>Sua loja completa de papelaria, bazar e presentes em Mauá. Atendendo com dedicação e carinho, sempre pensando na sua comodidade.</p>
-            </div>
-            
-            <div class="footer-col">
-                <h4>Links Rápidos</h4>
-                <ul class="footer-links">
-                    <li><a href="#inicio">Início</a></li>
-                    <li><a href="#sobre">Quem Somos</a></li>
-                    <li><a href="#servicos">Nossos Produtos</a></li>
-                    <li><a href="#avaliacoes">Avaliações</a></li>
-                </ul>
-            </div>
-
-            <div class="footer-col">
-                <h4>Contato</h4>
-                <ul class="footer-links">
-                    <li>WhatsApp: (11) 97518-2321</li>
-                    <li>Mauá - SP</li>
-                    <li><a href="https://maps.app.goo.gl/SuorFBoFbGswzFT5A" target="_blank" style="text-decoration: underline;">Ver rotas no Google Maps</a></li>
-                </ul>
-            </div>
-        </div>
-
-        <!-- Barra inferior de crédito (OBRIGATÓRIO) -->
-        <div class="footer-bottom">
-            Site desenvolvido por <a href="#">TeoCode</a> · © 2026 TeoCode · CNPJ: 41.061.643/0001-22 · (11) 99567-6202
-        </div>
-    </footer>
-
-    <!-- BOTÃO FLUTUANTE WHATSAPP -->
-    <a href="https://wa.me/5511975182321" target="_blank" class="float-wa" aria-label="Fale conosco no WhatsApp">
-        <svg viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.03 14.69 2 12.04 2M12.05 3.67C14.25 3.67 16.31 4.53 17.87 6.09C19.42 7.65 20.28 9.72 20.28 11.92C20.28 16.46 16.58 20.15 12.04 20.15C10.56 20.15 9.11 19.76 7.85 19L7.55 18.83L4.43 19.65L5.26 16.61L5.06 16.29C4.24 15 3.8 13.47 3.8 11.91C3.81 7.37 7.5 3.67 12.05 3.67M8.53 7.33C8.37 7.33 8.1 7.39 7.87 7.64C7.65 7.89 7 8.5 7 9.71C7 10.93 7.89 12.1 8 12.27C8.14 12.44 9.76 14.94 12.25 16C12.84 16.27 13.3 16.42 13.66 16.53C14.25 16.72 14.79 16.69 15.22 16.63C15.7 16.56 16.68 16.03 16.89 15.45C17.1 14.87 17.1 14.38 17.04 14.27C16.97 14.17 16.81 14.11 16.56 14C16.31 13.86 15.09 13.26 14.87 13.18C14.64 13.1 14.5 13.06 14.31 13.3C14.15 13.55 13.67 14.11 13.53 14.27C13.38 14.44 13.24 14.46 13 14.34C12.74 14.21 11.94 13.95 11 13.11C10.26 12.45 9.77 11.64 9.62 11.39C9.5 11.15 9.61 11 9.73 10.89C9.84 10.78 10 10.6 10.1 10.45C10.23 10.31 10.27 10.2 10.35 10.04C10.43 9.87 10.39 9.73 10.33 9.61C10.27 9.5 9.77 8.26 9.56 7.77C9.36 7.29 9.16 7.35 9 7.34C8.86 7.34 8.7 7.33 8.53 7.33Z"/></svg>
+<!-- ===========================
+     NAVIGATION
+=========================== -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="#hero" class="nav-logo">
+      <div class="nav-logo-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+      </div>
+      Tiger <span>Papelaria</span>
     </a>
 
-    <!-- SCRIPTS -->
-    <script>
-        // 1. Menu Mobile Toggle
-        const mobileBtn = document.getElementById('mobile-menu-btn');
-        const navLinks = document.getElementById('nav-links');
+    <ul class="nav-links">
+      <li><a href="#sobre">Sobre</a></li>
+      <li><a href="#produtos">Produtos</a></li>
+      <li><a href="#avaliacoes">Avaliações</a></li>
+      <li><a href="#contato">Contato</a></li>
+      <li><a href="https://wa.me/5511975182321" target="_blank" class="nav-cta">💬 WhatsApp</a></li>
+    </ul>
 
-        mobileBtn.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-        });
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
 
-        // 2. Fechar menu mobile ao clicar em um link
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                navLinks.classList.remove('active');
-            });
-        });
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#sobre" onclick="closeMobileMenu()">Sobre</a>
+    <a href="#produtos" onclick="closeMobileMenu()">Produtos</a>
+    <a href="#avaliacoes" onclick="closeMobileMenu()">Avaliações</a>
+    <a href="#contato" onclick="closeMobileMenu()">Contato</a>
+    <a href="https://wa.me/5511975182321" target="_blank" style="color: var(--pink); font-weight: 800;">💬 Fale pelo WhatsApp</a>
+  </div>
+</nav>
 
-        // 3. Smooth Scroll com offset do header
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href');
-                if(targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                const headerHeight = document.getElementById('header').offsetHeight;
-                
-                const elementPosition = targetElement.getBoundingClientRect().top;
-                const offsetPosition = elementPosition + window.pageYOffset - headerHeight;
-  
-                window.scrollTo({
-                    top: offsetPosition,
-                    behavior: "smooth"
-                });
-            });
-        });
+<!-- ===========================
+     HERO
+=========================== -->
+<section id="hero">
+  <div class="hero-blobs">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+  </div>
+  <div class="hero-inner">
+    <!-- Conteúdo -->
+    <div class="hero-content">
+      <div class="hero-badge fade-in">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+        4,5 estrelas no Google · 142 avaliações
+      </div>
+      <h1 class="hero-title fade-in fade-in-delay-1">
+        Tudo que você precisa em <span class="highlight">papelaria</span> — e muito mais!
+      </h1>
+      <p class="hero-subtitle fade-in fade-in-delay-2">
+        Há anos levando variedade, qualidade e um atendimento cheio de carinho para Mauá e região. De material escolar a presentes especiais, encontre aqui!
+      </p>
+      <div class="hero-buttons fade-in fade-in-delay-3">
+        <a href="https://wa.me/5511975182321" target="_blank" class="btn-primary">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Fale pelo WhatsApp
+        </a>
+        <a href="#sobre" class="btn-secondary">
+          Conheça a loja
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+      <div class="hero-stats fade-in fade-in-delay-4">
+        <div class="hero-stat">
+          <strong>20+</strong>
+          <span>Anos no mercado</span>
+        </div>
+        <div class="hero-stat">
+          <strong>4,5★</strong>
+          <span>Nota no Google</span>
+        </div>
+        <div class="hero-stat">
+          <strong>100%</strong>
+          <span>Atendimento humano</span>
+        </div>
+      </div>
+    </div>
 
-        // 4. Animações de Fade-in ao rolar a página (Intersection Observer)
-        const observerOptions = {
-            root: null,
-            rootMargin: '0px',
-            threshold: 0.15
-        };
+    <!-- Card visual -->
+    <div class="hero-visual fade-in fade-in-delay-2">
+      <div class="hero-card">
+        <div class="hero-floating-badge">
+          <strong>4,5</strong>
+          <span>Google Reviews</span>
+        </div>
+        <div class="hero-card-emoji-grid">
+          <div class="emoji-item"><span class="emoji">✏️</span><span>Lápis & Canetas</span></div>
+          <div class="emoji-item"><span class="emoji">📚</span><span>Material Escolar</span></div>
+          <div class="emoji-item"><span class="emoji">🎁</span><span>Presentes</span></div>
+          <div class="emoji-item"><span class="emoji">🗂️</span><span>Organização</span></div>
+          <div class="emoji-item"><span class="emoji">🎨</span><span>Arte & Hobby</span></div>
+          <div class="emoji-item"><span class="emoji">🔧</span><span>Bazar & Utilidades</span></div>
+          <div class="emoji-item"><span class="emoji">🖨️</span><span>Impressão</span></div>
+          <div class="emoji-item"><span class="emoji">🃏</span><span>Cartões</span></div>
+        </div>
+        <div class="hero-card-footer">
+          <div class="icon-wrap">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <p>R. Artur da Costa e Silva, 414<br>Parque São Vicente · Mauá - SP</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-        const observer = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    observer.unobserve(entry.target); // Para animar apenas uma vez
-                }
-            });
-        }, observerOptions);
+<!-- ===========================
+     SOBRE
+=========================== -->
+<section id="sobre">
+  <div class="section-inner">
+    <div class="sobre-grid">
+      <!-- Visual -->
+      <div class="sobre-visual fade-in">
+        <div class="sobre-main-card">
+          <span class="big-emoji">🐯</span>
+          <h3>Tiger Papelaria</h3>
+          <p>Uma loja que atravessou gerações e manteve a mesma essência: variedade real, atendimento com carinho e preço que cabe no bolso.</p>
+        </div>
+        <div class="sobre-mini-cards">
+          <div class="mini-card fade-in fade-in-delay-1">
+            <div class="mini-card-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+            </div>
+            <div>
+              <h4>Atendimento especial</h4>
+              <p>Equipe atenciosa que te ajuda a encontrar o que precisa.</p>
+            </div>
+          </div>
+          <div class="mini-card fade-in fade-in-delay-2">
+            <div class="mini-card-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+            </div>
+            <div>
+              <h4>Ampla variedade</h4>
+              <p>Do básico ao difícil de achar — tudo numa só loja!</p>
+            </div>
+          </div>
+          <div class="mini-card fade-in fade-in-delay-3">
+            <div class="mini-card-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+            </div>
+            <div>
+              <h4>Preços justos</h4>
+              <p>Custo-benefício que faz você voltar sempre.</p>
+            </div>
+          </div>
+          <div class="mini-card fade-in fade-in-delay-4">
+            <div class="mini-card-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+            </div>
+            <div>
+              <h4>Entrega disponível</h4>
+              <p>Receba seus produtos sem sair de casa.</p>
+            </div>
+          </div>
+        </div>
+      </div>
 
-        document.querySelectorAll('.fade-in').forEach((element) => {
-            observer.observe(element);
-        });
-    </script>
+      <!-- Conteúdo -->
+      <div class="sobre-content fade-in fade-in-delay-1">
+        <div class="section-label">Nossa história</div>
+        <h2 class="section-title">Uma papelaria que <em>faz parte</em> da sua história</h2>
+        <p class="sobre-text">
+          A Tiger Papelaria e Presentes nasceu com o propósito de ser muito mais do que uma loja — somos parte das memórias de famílias inteiras em Mauá. Há décadas, atendemos desde crianças que compravam material escolar até adultos que hoje trazem seus filhos para fazer o mesmo.
+        </p>
+        <p class="sobre-text">
+          Nossa essência nunca mudou: muita variedade, atendimento próximo e preços que respeitam o seu bolso. Desde baterias e botões de camisa até cadernos e presentes especiais — se você procurar aqui, vai encontrar!
+        </p>
+
+        <div class="horario-box fade-in fade-in-delay-2">
+          <h4>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            Horário de funcionamento
+          </h4>
+          <div class="horario-item">
+            <span class="dia">Segunda a Sexta</span>
+            <span class="hora">09h – 19h</span>
+          </div>
+          <div class="horario-item">
+            <span class="dia">Sábado</span>
+            <span class="hora">09h – 18h30</span>
+          </div>
+          <div class="horario-item">
+            <span class="dia">Domingo</span>
+            <span class="hora">09h – 13h</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===========================
+     DIFERENCIAIS STRIP
+=========================== -->
+<div class="diferenciais-strip">
+  <div class="diferenciais-inner">
+    <div class="diferencial-item fade-in">
+      <div class="icon-circle">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+      </div>
+      <div>
+        <h4>Entregamos pra você</h4>
+        <p>Compre sem sair de casa com entrega disponível.</p>
+      </div>
+    </div>
+    <div class="diferencial-item fade-in fade-in-delay-1">
+      <div class="icon-circle">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+      </div>
+      <div>
+        <h4>Aceitamos cartões</h4>
+        <p>Crédito, débito e pagamento por NFC.</p>
+      </div>
+    </div>
+    <div class="diferencial-item fade-in fade-in-delay-2">
+      <div class="icon-circle">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+      </div>
+      <div>
+        <h4>Atendimento com carinho</h4>
+        <p>Equipe dedicada a te ajudar sempre.</p>
+      </div>
+    </div>
+    <div class="diferencial-item fade-in fade-in-delay-3">
+      <div class="icon-circle">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+      </div>
+      <div>
+        <h4>Visita rápida e eficiente</h4>
+        <p>Encontre tudo rapidinho e sem complicação.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===========================
+     PRODUTOS / SERVIÇOS
+=========================== -->
+<section id="produtos">
+  <div class="section-inner">
+    <div class="produtos-header fade-in">
+      <div class="section-label">O que oferecemos</div>
+      <h2 class="section-title">Tudo o que você <em>precisa</em> em um só lugar</h2>
+      <p class="section-subtitle">Do material escolar ao presente perfeito, passando por itens de bazar que só você vai achar. Variedade é o nosso sobrenome!</p>
+    </div>
+
+    <div class="produtos-grid">
+      <div class="produto-card fade-in">
+        <span class="produto-emoji">📚</span>
+        <h3>Material Escolar</h3>
+        <p>Cadernos, lápis, canetas, réguas, borrachas, mochilas e tudo mais para o dia a dia escolar de crianças e adultos.</p>
+        <div class="produto-tags">
+          <span class="tag">Cadernos</span>
+          <span class="tag">Lápis & Canetas</span>
+          <span class="tag">Mochilas</span>
+          <span class="tag tag-peach">Estojos</span>
+        </div>
+      </div>
+
+      <div class="produto-card fade-in fade-in-delay-1">
+        <span class="produto-emoji">🎁</span>
+        <h3>Presentes & Lembranças</h3>
+        <p>Encontre o presente ideal para todas as ocasiões: aniversários, formaturas, datas especiais e muito mais!</p>
+        <div class="produto-tags">
+          <span class="tag">Embrulhos</span>
+          <span class="tag">Cartões</span>
+          <span class="tag tag-peach">Caixas Decoradas</span>
+          <span class="tag">Laços & Fitas</span>
+        </div>
+      </div>
+
+      <div class="produto-card fade-in fade-in-delay-2">
+        <span class="produto-emoji">🎨</span>
+        <h3>Arte & Criatividade</h3>
+        <p>Tintas, pincéis, papel especial, canetas coloridas e tudo para quem ama expressar criatividade no papel.</p>
+        <div class="produto-tags">
+          <span class="tag">Tintas</span>
+          <span class="tag">Pincéis</span>
+          <span class="tag tag-peach">Aquarela</span>
+          <span class="tag">Papéis Especiais</span>
+        </div>
+      </div>
+
+      <div class="produto-card fade-in fade-in-delay-1">
+        <span class="produto-emoji">🗂️</span>
+        <h3>Organização & Escritório</h3>
+        <p>Pastas, arquivos, clips, grampeadores, fitas adesivas e tudo para manter seu espaço organizado e produtivo.</p>
+        <div class="produto-tags">
+          <span class="tag">Pastas</span>
+          <span class="tag">Grampeadores</span>
+          <span class="tag tag-peach">Post-its</span>
+          <span class="tag">Fitas</span>
+        </div>
+      </div>
+
+      <div class="produto-card fade-in fade-in-delay-2">
+        <span class="produto-emoji">🔧</span>
+        <h3>Bazar & Utilidades</h3>
+        <p>Aquele cantinho de surpresas onde você acha baterias, botões, linhas, agulhas e tantos itens do cotidiano que são difíceis de encontrar!</p>
+        <div class="produto-tags">
+          <span class="tag">Baterias</span>
+          <span class="tag">Botões</span>
+          <span class="tag tag-peach">Costura</span>
+          <span class="tag">Utilidades</span>
+        </div>
+      </div>
+
+      <div class="produto-card fade-in fade-in-delay-3">
+        <span class="produto-emoji">🖨️</span>
+        <h3>Impressão & Serviços</h3>
+        <p>Serviços rápidos de impressão para documentos, trabalhos escolares e muito mais. Praticidade quando você mais precisa!</p>
+        <div class="produto-tags">
+          <span class="tag">Impressão</span>
+          <span class="tag">Documentos</span>
+          <span class="tag tag-peach">Trabalhos</span>
+          <span class="tag">Cópias</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===========================
+     AVALIAÇÕES
+=========================== -->
+<section id="avaliacoes">
+  <div class="section-inner">
+    <div class="avaliacoes-header fade-in">
+      <div class="section-label">O que dizem os clientes</div>
+      <h2 class="section-title">Avaliações <em>reais</em> no Google</h2>
+
+      <div class="google-badge fade-in fade-in-delay-1">
+        <div class="google-badge-left">
+          <span class="score">4,5</span>
+          <div class="stars">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="#f5a623"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="#f5a623"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="#f5a623"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="#f5a623"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="#e0e0e0"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <span class="reviews">142 avaliações</span>
+        </div>
+        <div class="google-badge-right">
+          <p><strong>Altamente avaliado</strong> pelos clientes do Google.<br>Venha fazer parte dessa comunidade de clientes satisfeitos!</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="reviews-grid">
+      <div class="review-card fade-in">
+        <div class="quote-mark">"</div>
+        <p class="review-text">Ótima variedade e atendimento de toda equipe. Indico muito para quem procura uma papelaria completa e com gente boa atendendo!</p>
+        <div class="review-footer">
+          <div class="review-avatar">G</div>
+          <div class="info">
+            <h4>Gisele Costa</h4>
+            <span>3 meses atrás · ⭐⭐⭐⭐⭐</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card fade-in fade-in-delay-1">
+        <div class="quote-mark">"</div>
+        <p class="review-text">Local pequeno porém conta com uma boa variedade de itens de papelaria e bazar. Tudo o que procurei neste local até hoje encontrei, desde bateria à botões de camisa. O atendimento é bom e os preços são justos.</p>
+        <div class="review-footer">
+          <div class="review-avatar">L</div>
+          <div class="info">
+            <h4>Luis Duarte</h4>
+            <span>4 anos atrás · ⭐⭐⭐⭐⭐</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card fade-in fade-in-delay-2">
+        <div class="quote-mark">"</div>
+        <p class="review-text">Frequentava com mais frequência a uns 20 anos quando fazia muito trabalho escolar, hoje vou com a minha filha. Não mudaram a essência mesmo com tantos anos. Parabéns!!</p>
+        <div class="review-footer">
+          <div class="review-avatar">L</div>
+          <div class="info">
+            <h4>Larissa de João</h4>
+            <span>Um ano atrás · ⭐⭐⭐⭐⭐</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===========================
+     CONTATO
+=========================== -->
+<section id="contato">
+  <div class="section-inner">
+    <div class="contato-grid">
+      <!-- Info -->
+      <div>
+        <div class="section-label fade-in">Venha nos visitar</div>
+        <h2 class="section-title fade-in fade-in-delay-1">Estamos <em>esperando</em> por você em Mauá!</h2>
+        <p class="section-subtitle fade-in fade-in-delay-2">Entre em contato, tire suas dúvidas pelo WhatsApp ou venha pessoalmente — será um prazer te atender!</p>
+
+        <div class="contato-info-cards">
+          <div class="info-card fade-in">
+            <div class="info-card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div>
+              <h4>Endereço</h4>
+              <p>R. Pres. Artur da Costa e Silva, 414<br>Parque São Vicente · Mauá - SP · CEP 09371-490</p>
+            </div>
+          </div>
+
+          <div class="info-card fade-in fade-in-delay-1">
+            <div class="info-card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            </div>
+            <div>
+              <h4>WhatsApp</h4>
+              <a href="https://wa.me/5511975182321" target="_blank">(11) 97518-2321</a>
+            </div>
+          </div>
+
+          <div class="info-card fade-in fade-in-delay-2">
+            <div class="info-card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <div>
+              <h4>Horários</h4>
+              <p>Seg–Sex: 09h–19h &nbsp;|&nbsp; Sáb: 09h–18h30<br>Dom: 09h–13h</p>
+            </div>
+          </div>
+
+          <div class="info-card fade-in fade-in-delay-3">
+            <div class="info-card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+            </div>
+            <div>
+              <h4>Formas de pagamento</h4>
+              <div class="pagamentos-row">
+                <span class="pagamento-tag">💳 Crédito</span>
+                <span class="pagamento-tag">💳 Débito</span>
+                <span class="pagamento-tag">📱 NFC</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <a href="https://wa.me/5511975182321" target="_blank" class="btn-whatsapp-big fade-in">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Enviar mensagem no WhatsApp
+        </a>
+      </div>
+
+      <!-- Mapa -->
+      <div class="fade-in fade-in-delay-2">
+        <div class="map-container">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3654.5!2d-46.457!3d-23.668!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce434673c50e9b%3A0xe7e9b2b2b2b2b2b2!2sR.%20Pres.%20Artur%20da%20Costa%20e%20Silva%2C%20414%20-%20Parque%20Sao%20Vicente%2C%20Mau%C3%A1%20-%20SP%2C%2009371-490!5e0!3m2!1spt-BR!2sbr!4v1710000000000!5m2!1spt-BR!2sbr"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Localização Tiger Papelaria - Mauá SP">
+          </iframe>
+        </div>
+        <p style="text-align:center; margin-top:12px; font-size:0.85rem; color: var(--gray);">
+          📍 R. Pres. Artur da Costa e Silva, 414 · Parque São Vicente · Mauá - SP
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===========================
+     FOOTER
+=========================== -->
+<footer>
+  <div class="footer-main">
+    <!-- Marca -->
+    <div class="footer-brand">
+      <div class="nav-logo" style="margin-bottom:14px;">
+        <div class="nav-logo-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+        </div>
+        Tiger <span>Papelaria</span>
+      </div>
+      <p>Sua papelaria de confiança em Mauá - SP. Variedade, carinho e preço justo desde sempre. Venha nos visitar!</p>
+      <div class="footer-social">
+        <a href="https://wa.me/5511975182321" target="_blank" aria-label="WhatsApp">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Links rápidos -->
+    <div class="footer-col">
+      <h4>Links rápidos</h4>
+      <ul class="footer-links">
+        <li><a href="#sobre">Sobre nós</a></li>
+        <li><a href="#produtos">Produtos</a></li>
+        <li><a href="#avaliacoes">Avaliações</a></li>
+        <li><a href="#contato">Contato</a></li>
+        <li><a href="https://wa.me/5511975182321" target="_blank">WhatsApp</a></li>
+      </ul>
+    </div>
+
+    <!-- Contato -->
+    <div class="footer-col">
+      <h4>Contato</h4>
+      <div class="footer-contact-item">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <span>R. Pres. Artur da Costa e Silva, 414 · Parque São Vicente · Mauá - SP</span>
+      </div>
+      <div class="footer-contact-item">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 .84h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        <a href="https://wa.me/5511975182321" target="_blank" style="color:rgba(255,255,255,.6)">(11) 97518-2321</a>
+      </div>
+      <div class="footer-contact-item">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        <span>Seg–Sex: 09h–19h<br>Sáb: 09h–18h30 · Dom: 09h–13h</span>
+      </div>
+    </div>
+  </div>
+
+  <hr class="footer-divider" />
+
+  <!-- Crédito TeoCode -->
+  <div class="footer-credits">
+    Site desenvolvido por <a href="#" target="_blank">TeoCode</a> · © 2026 TeoCode · CNPJ: 41.061.643/0001-22 · (11) 99567-6202
+  </div>
+</footer>
+
+<!-- ===========================
+     FLOATING WHATSAPP
+=========================== -->
+<a href="https://wa.me/5511975182321" target="_blank" class="float-whatsapp" aria-label="Fale pelo WhatsApp">
+  <svg width="30" height="30" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<!-- ===========================
+     JAVASCRIPT
+=========================== -->
+<script>
+  // Hamburger menu
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+
+  hamburger.addEventListener('click', () => {
+    mobileMenu.classList.toggle('open');
+  });
+
+  function closeMobileMenu() {
+    mobileMenu.classList.remove('open');
+  }
+
+  // Intersection Observer — fade-in on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.12,
+    rootMargin: '0px 0px -40px 0px'
+  });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  // Navbar scroll effect
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 30) {
+      navbar.style.boxShadow = '0 4px 30px rgba(194,25,138,0.15)';
+    } else {
+      navbar.style.boxShadow = '0 2px 20px rgba(194,25,138,0.1)';
+    }
+  });
+
+  // Close mobile menu on outside click
+  document.addEventListener('click', (e) => {
+    if (!hamburger.contains(e.target) && !mobileMenu.contains(e.target)) {
+      mobileMenu.classList.remove('open');
+    }
+  });
+</script>
 </body>
 </html>
